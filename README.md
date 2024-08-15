@@ -1,8 +1,9 @@
-# ByteClass
+# ByteClass API
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-black-magic.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/not-a-bug-a-feature.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-black-magic.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/not-a-bug-a-feature.svg)](https://forthebadge.com)
 
 ByteClass a drag and drop replacement for all google classroom
 task and student management. Byteclass offers a variety of student
@@ -17,3 +18,7 @@ Your contributions are NOT welcome. DO NOT commit to this software, as this is N
 # License
 
 idk
+
+# How goofy is my code? This goofy
+
+[![e](https://pbs.twimg.com/media/GNnN-FYXIAAP-cf?format=jpg&name=large)]()
