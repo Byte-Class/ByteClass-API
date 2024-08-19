@@ -1,14 +1,24 @@
 import {
   pgTable,
-  unique,
-  text,
-  timestamp,
   foreignKey,
+  text,
+  unique,
+  timestamp,
   json,
   primaryKey,
   integer,
   boolean,
 } from "drizzle-orm/pg-core";
+
+export const timetable = pgTable("timetable", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text("userId")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+});
 
 export const user = pgTable(
   "user",
@@ -34,19 +44,12 @@ export const session = pgTable("session", {
   expires: timestamp("expires", { mode: "string" }).notNull(),
 });
 
-export const timetable = pgTable("timetable", {
-  id: text("id").primaryKey().notNull(),
-  userId: text("userId")
-    .notNull()
-    .references(() => user.id, { onDelete: "cascade" }),
-});
-
 export const event = pgTable("event", {
   id: text("id").primaryKey().notNull(),
   timetableId: text("timetableId")
     .notNull()
     .references(() => timetable.id, { onDelete: "cascade" }),
-  name: text("name"),
+  name: text("name").notNull(),
   description: text("description"),
   time: json("time"),
   location: text("location"),
