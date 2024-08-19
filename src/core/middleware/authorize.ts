@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 
 import { db } from "../drizzle/db";
 import { session } from "../drizzle/schema";
@@ -14,21 +13,27 @@ async function authorizeRequest(
   let sessionId = req.headers.session;
 
   if (!sessionId) {
+    console.log("e1");
     return res.sendStatus(401);
   }
 
   sessionId = convertStringArrayToString(sessionId);
 
-  const drizzleRes = await db
-    .select({
-      userId: session.userId,
-    })
-    .from(session)
-    .where(eq(session.sessionToken, sessionId));
+  const drizzleRes = (
+    await db
+      .select({
+        userId: session.userId,
+      })
+      .from(session)
+      .where(eq(session.sessionToken, sessionId))
+  )[0];
 
-  if (drizzleRes.length === 0) {
+  if (!drizzleRes) {
+    console.log("e2");
     return res.sendStatus(401);
   }
+
+  req.id = drizzleRes.userId;
 
   next();
 }
