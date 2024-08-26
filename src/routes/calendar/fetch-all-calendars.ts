@@ -30,7 +30,7 @@ fetchCalendarsSelf.get(
         .select()
         .from(timetable)
         .where(eq(timetable.userId, req.params.userId));
-    } catch (err) {
+    } catch {
       return res.sendStatus(500);
     }
 
