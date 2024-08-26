@@ -23,9 +23,9 @@ createCalendar.post(
     try {
       await db.insert(timetable).values({
         name: req.body.tableName,
-        userId: req.id,
+        userId: req.id as string,
       });
-    } catch (err) {
+    } catch {
       return res.sendStatus(500);
     }
 
