@@ -16,7 +16,9 @@ createCalendar.post(
   }),
   async (req, res) => {
     if (!req.id) {
-      return res.sendStatus(400);
+      return res
+        .status(401)
+        .send({ error: "Invalid requesting ID", code: 401 });
     }
 
     // Now we just need to create the table
@@ -25,10 +27,10 @@ createCalendar.post(
         name: req.body.tableName,
         userId: req.id as string,
       });
-    } catch {
-      return res.sendStatus(500);
+    } catch (err) {
+      return res.status(500).send({ error: err, code: 500 });
     }
 
-    return res.sendStatus(200);
+    return res.status(201).send({ detail: "Successfully created calendar" });
   }
 );

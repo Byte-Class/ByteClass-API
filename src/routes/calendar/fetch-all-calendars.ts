@@ -19,7 +19,9 @@ fetchCalendarsSelf.get(
   }),
   async (req, res) => {
     if (!req.id) {
-      return res.sendStatus(400);
+      return res
+        .status(401)
+        .send({ error: "Invalid requesting ID", code: 401 });
     }
 
     let drizzleRes;
@@ -30,8 +32,8 @@ fetchCalendarsSelf.get(
         .select()
         .from(timetable)
         .where(eq(timetable.userId, req.params.userId));
-    } catch {
-      return res.sendStatus(500);
+    } catch (err) {
+      return res.status(500).send({ error: err, code: 500 });
     }
 
     return res.send(drizzleRes);
