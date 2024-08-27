@@ -1,6 +1,5 @@
 import {
   pgTable,
-  foreignKey,
   text,
   unique,
   timestamp,
@@ -45,13 +44,20 @@ export const session = pgTable("session", {
 });
 
 export const event = pgTable("event", {
-  id: text("id").primaryKey().notNull(),
+  id: text("id")
+    .primaryKey()
+    .notNull()
+    .$defaultFn(() => crypto.randomUUID()),
   timetableId: text("timetableId")
     .notNull()
     .references(() => timetable.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   description: text("description"),
-  time: json("time"),
+  day: text("day").notNull(),
+  time: json("time").$type<{
+    start: string;
+    end: string;
+  }>(),
   location: text("location"),
 });
 
