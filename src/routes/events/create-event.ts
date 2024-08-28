@@ -69,7 +69,6 @@ createEvent.post(
     }
 
     // Now we make the event
-
     try {
       await db.insert(event).values({
         name: req.body.eventName,
