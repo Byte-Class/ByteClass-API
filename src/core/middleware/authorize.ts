@@ -13,7 +13,6 @@ async function authorizeRequest(
   let sessionId = req.headers.session;
 
   if (!sessionId) {
-    console.log("e1");
     return res.sendStatus(401);
   }
 
