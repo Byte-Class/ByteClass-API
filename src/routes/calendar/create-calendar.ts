@@ -12,7 +12,7 @@ createCalendar.post(
   "/",
   authorizeRequest,
   validateRequest({
-    body: z.object({ tableName: z.string() }),
+    body: z.object({ tableName: z.string(), description: z.string().max(200) }),
   }),
   async (req, res) => {
     if (!req.id) {
@@ -26,6 +26,7 @@ createCalendar.post(
       await db.insert(timetable).values({
         name: req.body.tableName,
         userId: req.id as string,
+        description: req.body.description,
       });
     } catch (err) {
       return res.status(500).send({ error: err, code: 500 });
