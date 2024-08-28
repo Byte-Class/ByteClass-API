@@ -17,6 +17,7 @@ export const timetable = pgTable("timetable", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
+  description: text("description"),
 });
 
 export const user = pgTable(
