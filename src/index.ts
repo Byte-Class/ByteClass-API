@@ -11,6 +11,7 @@ app.use(cors());
 import { createCalendar } from "./routes/calendar/create-calendar";
 import { fetchCalendarsSelf } from "./routes/calendar/fetch-all-calendars";
 import { fetchSpecificCalendarSelf } from "./routes/calendar/fetch-specific-calendar";
+import { toggleCalendar } from "./routes/calendar/toggle-calendar";
 
 import { createEvent } from "./routes/events/create-event";
 import { fetchWeek } from "./routes/events/fetch-week";
@@ -19,6 +20,7 @@ import { fetchWeek } from "./routes/events/fetch-week";
 app.use("/api/calendars", createCalendar);
 app.use("/api/calendars", fetchCalendarsSelf);
 app.use("/api/calendars", fetchSpecificCalendarSelf);
+app.use("/api/calendars", toggleCalendar);
 
 app.use("/api/events", createEvent);
 app.use("/api/events/week", fetchWeek);
