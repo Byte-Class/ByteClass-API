@@ -45,6 +45,8 @@ fetchWeek.get(
       });
     }
 
+    console.log(req.query.calendar);
+
     const start = startOfWeek(currentDay);
     const end = endOfWeek(currentDay);
 
