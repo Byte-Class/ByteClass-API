@@ -7,6 +7,7 @@ import { parseISO } from "date-fns";
 import { db } from "../../core/drizzle/db";
 import { event, timetable } from "../../core/drizzle/schema";
 import { eq } from "drizzle-orm";
+import { ColourType } from "../../core/types/types";
 
 export const createEvent = express.Router();
 
@@ -24,6 +25,7 @@ createEvent.post(
       start: z.string(),
       end: z.string(),
       calendarId: z.string(),
+      colour: z.custom<ColourType>(),
     }),
   }),
   async (req, res) => {
@@ -79,6 +81,7 @@ createEvent.post(
           start: req.body.start,
           end: req.body.end,
         },
+        colour: req.body.colour,
       });
     } catch (err) {
       return res.status(500).send({
